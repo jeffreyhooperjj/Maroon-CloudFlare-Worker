@@ -2,7 +2,7 @@ export default {
   async fetch(request) {
     const url = new URL(request.url);
 
-    // Serve Apple App Site Association
+    // Apple App Site Association
     if (url.pathname === "/.well-known/apple-app-site-association") {
       const aasa = {
         applinks: {
@@ -28,19 +28,7 @@ export default {
       });
     }
 
-    // Bot detection (iMessage / social previews)
-    const ua = request.headers.get("user-agent") || "";
-    const isBot =
-      /Applebot|Twitterbot|facebookexternalhit|Facebot|Slackbot|Discordbot|LinkedInBot|WhatsApp|TelegramBot/i.test(
-        ua
-      );
-
-    // Humans → real site
-    if (!isBot) {
-      return Response.redirect("https://www.datemaroon.com/", 302);
-    }
-
-    // Bots → rich preview (200 OK, no redirect)
+    // Rich preview page for EVERY path (including /blah)
     const html = `<!doctype html>
 <html>
 <head>
@@ -54,6 +42,13 @@ export default {
   <meta property="og:url" content="${url.href}" />
 
   <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Humans get redirected; bots still see OG tags -->
+  <script>
+    setTimeout(() => {
+      window.location.replace("https://www.datemaroon.com/");
+    }, 250);
+  </script>
 </head>
 <body></body>
 </html>`;
