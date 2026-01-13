@@ -47,7 +47,7 @@ export default {
   <meta charset="utf-8" />
   <title>Sent you a possible match on Maroon</title>
 
-  <meta property="og:title" content="Sent you a possible match on Maroon" />
+  <meta property="og:title" content="A friend thought you would connect with this profile" />
   <meta property="og:description" content="Open Date Maroon to view the match." />
   <meta property="og:image" content="https://links.datemaroon.com/questions.png" />
   <meta property="og:type" content="website" />
