@@ -1,0 +1,5 @@
+{
+  "name": "maroon-cloudflare-worker",
+  "compatibility_date": "2026-01-13",
+  "main": "src/index.js"
+}
